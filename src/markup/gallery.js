@@ -1,4 +1,3 @@
-import { pixabayApi } from '../api/pixabay.js';
 import { lightbox } from '../helpers/lightbox.js';
 import { appendMarkup, createMarkup } from './markupHelpers.js';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -11,7 +10,8 @@ const { gallery, btnLoadMore, loadMoreContainer } = refs;
 export function createCard(array) {
   return `
    <a href="${array.largeImageURL}" class="gallery__item " >
-   <img src="${array.webformatURL}" alt="${array.tags}" class="gallery__image simple-lightbox" loading="lazy"  />
+    <div class="image-wrapper">  <img src="${array.webformatURL}" alt="${array.tags}" class="gallery__image simple-lightbox" loading="lazy"  /></div>
+ 
    
    <div class="info">
    <p class="info-item">
@@ -56,7 +56,7 @@ export function createCard(array) {
 }
 
 export function appendGallery(array) {
-  console.log("appendGallery", array);
+  
   appendMarkup(gallery, createMarkup(array.hits, createCard));
 
   lightbox.refresh();
